@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { Users } from '../users/users';
-import { ShopPage } from '../shop/shop';
+//import { NavController } from 'ionic-angular';
+//import { Users } from '../users/users';
+//import { ShopPage } from '../shop/shop';
 //import { BuyoutPage } from '../buyout/buyout';
 
 @Component({
@@ -9,7 +10,10 @@ import { ShopPage } from '../shop/shop';
   templateUrl: 'home.html'
 })
 export class HomePage {
+user = Users;
 
+
+  /*
   constructor(public navCtrl: NavController) {
     //console.log('hello');
   }
@@ -20,7 +24,11 @@ export class HomePage {
   onGoToShop(){
     this.navCtrl.push(ShopPage)
   }
+
+
   // onGoToBuy(){
   //   this.navCtrl.push(BuyoutPage)
   // }
+
+  */
 }

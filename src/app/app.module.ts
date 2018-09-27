@@ -10,6 +10,12 @@ import {Users} from '../pages/users/users';
 import {ChildUser} from '../pages/users/childUser/ChildUser';
 import { BuyoutPage } from '../pages/buyout/buyout';
 import { ShopPage } from '../pages/shop/shop';
+import { AllPage } from '../pages/all/all';
+import { CompletedPage } from '../pages/completed/completed';
+import { WaitingPage } from '../pages/waiting/waiting';
+import { OthersPage } from '../pages/others/others';
+import { SmPage } from '../pages/sm/sm';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -17,11 +23,16 @@ import { ShopPage } from '../pages/shop/shop';
     Users,
     ChildUser,
     BuyoutPage,
-    ShopPage
+    ShopPage,
+    AllPage,
+    CompletedPage,
+    WaitingPage,
+    OthersPage,
+    SmPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{tabsPlacement:'top'})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +41,12 @@ import { ShopPage } from '../pages/shop/shop';
     Users,
     ChildUser,
     BuyoutPage,
-    ShopPage
+    ShopPage,
+    AllPage,
+    CompletedPage,
+    WaitingPage,
+    OthersPage,
+    SmPage
   ],
   providers: [
     StatusBar,

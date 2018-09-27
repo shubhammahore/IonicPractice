@@ -4,7 +4,7 @@ import { AllPage } from '../all/all';
 import { CompletedPage } from '../completed/completed';
 import { WaitingPage } from '../waiting/waiting';
 import { OthersPage } from '../others/others';
-
+import {ProfilePopoverPage} from '../profile-popover/profile-popover';
 
 
 @IonicPage()
@@ -13,13 +13,16 @@ import { OthersPage } from '../others/others';
   templateUrl: 'sm.html'
 })
 export class SmPage {
-
+  //popover=ProfilePopoverPage;
   allRoot = AllPage;
   completedRoot = CompletedPage;
   waitingRoot = WaitingPage;
   othersRoot = OthersPage;
-
+  
 
   constructor(public navCtrl: NavController) {}
+  presentPopover(){
+    this.navCtrl.push(ProfilePopoverPage);
 
+  }
 }

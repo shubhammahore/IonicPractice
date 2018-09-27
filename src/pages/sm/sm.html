@@ -1,20 +1,13 @@
-<ion-header>
 
-  <ion-navbar>
-    <ion-title>
-      <span padding-top>Profiles</span>
-      <span float-right>
-        <button ion-button icon-only (click)="presentPopover($event)">
-            <ion-icon name="more"></ion-icon>
-        </button>
-      </span>  
-    </ion-title>
-  </ion-navbar>
-
-</ion-header>
-<ion-tabs>
+<ion-tabs >
     <ion-tab [root]="allRoot" tabTitle="All" tabIcon="information-circle"></ion-tab>
     <ion-tab [root]="completedRoot" tabTitle="Completed" tabIcon="information-circle"></ion-tab>
     <ion-tab [root]="waitingRoot" tabTitle="Waiting" tabIcon="information-circle"></ion-tab>
     <ion-tab [root]="othersRoot" tabTitle="Others" tabIcon="information-circle"></ion-tab>
 </ion-tabs>
+
+<span float-right>
+    <button ion-button icon-only (click)="presentPopover()">
+        <ion-icon name="md-more"></ion-icon>
+    </button>
+  </span>

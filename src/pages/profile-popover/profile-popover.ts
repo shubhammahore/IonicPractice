@@ -21,5 +21,20 @@ export class ProfilePopoverPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePopoverPage');
   }
+  onGoBack(){
+    this.navCtrl.pop();
+  }
+  setting() {
+
+  }
+  logout() {
+
+  }
+  filter() {
+
+  }
+  report(){
+    
+  }
 
 }

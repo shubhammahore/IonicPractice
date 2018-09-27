@@ -15,6 +15,7 @@ import { CompletedPage } from '../pages/completed/completed';
 import { WaitingPage } from '../pages/waiting/waiting';
 import { OthersPage } from '../pages/others/others';
 import { SmPage } from '../pages/sm/sm';
+import {ProfilePopoverPage} from '../pages/profile-popover/profile-popover';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SmPage } from '../pages/sm/sm';
     CompletedPage,
     WaitingPage,
     OthersPage,
-    SmPage
+    SmPage,
+    ProfilePopoverPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { SmPage } from '../pages/sm/sm';
     CompletedPage,
     WaitingPage,
     OthersPage,
-    SmPage
+    SmPage,
+    ProfilePopoverPage
   ],
   providers: [
     StatusBar,

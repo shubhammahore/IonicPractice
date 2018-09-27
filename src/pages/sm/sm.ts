@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController,PopoverController } from 'ionic-angular';
 import { AllPage } from '../all/all';
 import { CompletedPage } from '../completed/completed';
 import { WaitingPage } from '../waiting/waiting';
@@ -20,9 +20,13 @@ export class SmPage {
   othersRoot = OthersPage;
   
 
-  constructor(public navCtrl: NavController) {}
-  presentPopover(){
-    this.navCtrl.push(ProfilePopoverPage);
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController) {}
+  presentPopover(myEvent){
+    let popover = this.popoverCtrl.create(ProfilePopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+    //this.navCtrl.push(ProfilePopoverPage);
 
   }
 }

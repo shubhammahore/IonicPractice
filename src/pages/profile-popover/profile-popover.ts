@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the ProfilePopoverPage page.
@@ -15,9 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePopoverPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController) {
   }
 
+  close() {
+    this.viewCtrl.dismiss();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePopoverPage');
   }
@@ -34,7 +37,7 @@ export class ProfilePopoverPage {
 
   }
   report(){
-    
+
   }
 
 }

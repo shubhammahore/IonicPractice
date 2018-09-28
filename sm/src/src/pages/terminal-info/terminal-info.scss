@@ -1,0 +1,46 @@
+page-terminal-info {
+    .logo-Img {
+        border: 1px solid #ffffff;
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        padding-top: -1px;
+    }
+    .card-header-md {
+        padding-bottom: 3px;
+    }
+    .business-description {
+        color: #888;
+        font-size: 1.2rem;
+    }
+    .card-heading {
+        font-size: 1.4rem;
+    }
+    .sliderimage {
+        width: 100%;
+        height: 117px;
+    }
+    .slidercard-content {
+        padding: 3px !important;
+    }
+    .slider-card {
+        border-radius: 7px !important;
+        width: 130% !important;
+        height: 130px !important;
+        border: solid 3px darkgray;
+    }
+    .order-button {
+        background-color: #008e76;
+        height: 40px;
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    .toolbar-title {
+        white-space: normal !important;
+    }
+    .iconstyle {
+        margin-right: 10px;
+        font-size: 35px;
+    }
+}

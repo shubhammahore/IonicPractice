@@ -1,0 +1,144 @@
+    page-order-success {
+        .iongrid {
+            border: 1px solid black;
+        }
+        .iconcolor {
+            color: #00bfa5;
+            font-size: 40px;
+        }
+        .iconcolor1 {
+            color: red;
+            font-size: 50px;
+        }
+        .scroll-content {
+            overflow: hidden !important;
+        }
+        .list-md,
+        .item-md .radio-md,
+        .label-md {
+            margin: 0px !important;
+        }
+        .item-md {
+            font-size: 1.1rem !important;
+        }
+        .min-hgt1 {
+            min-height: 52px !important;
+        }
+        .my-overlay {
+            position: fixed;
+            width: 80%;
+            height: 52%;
+            background: #fff;
+            z-index: 20;
+            top: 25%;
+            left: 10%;
+            box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.6);
+            padding-bottom: 10px;
+        }
+        .my-overlayUpdate {
+            position: fixed;
+            width: 64%;
+            height: 33%;
+            background: #fff;
+            z-index: 20;
+            top: 25%;
+            left: 20%;
+            box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.6);
+        }
+        // .button-md {
+        //     margin: 0.6rem 0.2rem 0rem 0.0rem !important;
+        // }
+        .item-md.item-block .item-inner {
+            padding-right: 0px;
+        }
+         ::-webkit-scrollbar-track {
+            // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+            border-radius: 8px!important;
+            background-color: #fff!important;
+        }
+         ::-webkit-scrollbar {
+            width: 6px!important;
+            background-color: #fff!important;
+        }
+         ::-webkit-scrollbar-thumb {
+            border-radius: 8px!important;
+            // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)!important;
+            background-color: #928f8f!important
+        }
+        .thankutext {
+            color: #00bfa5;
+            font-size: 20px;
+        }
+        .text-padding {
+            padding: 16px !important;
+            padding-top: 5px !important;
+        }
+        .sorrytext {
+            color: red;
+            // font-size: 20px;
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+        .text-input-md {
+            margin: 5px !important;
+            margin-top: 13px !important;
+        }
+        .hgt {
+            .item-block {
+                min-height: fit-content !important;
+            }
+        }
+        .buttonion {
+            background-color: #008e76;
+            text-align: center;
+            padding: 7px;
+            width: 100% !important;
+        }
+        .save {
+            color: white;
+            margin-right: 4px !important;
+        }
+        .gridrowbotton {
+            text-align: center;
+        }
+        .height-div {
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+        .grid-height {
+            height: 90% !important;
+            // overflow-y: scroll !important;
+        }
+        .imgWidth {
+            width: 100% !important;
+            height: 46px !important;
+        }
+        .section1 {
+            height: 44% !important;
+        }
+        .section2 {
+            height: 55% !important;
+            overflow: scroll !important;
+        }
+        .pd-left {
+            padding-left: 0.2rem !important;
+        }
+        .pd-right {
+            padding-right: 0.2rem !important;
+        }
+        .my-overlay1 {
+            height: 80% !important;
+        }
+        @media screen and (max-width: 360px) {
+            .min-hgt1 {
+                min-height: 45px !important;
+            }
+        }
+        .ionrow {
+            border-bottom: 1px solid black;
+        }
+        .mr {
+            margin-right: 5px;
+            height: 100% !important;
+        }
+    }

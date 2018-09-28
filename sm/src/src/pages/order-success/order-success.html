@@ -1,0 +1,218 @@
+<!--
+  Generated template for the OrderSuccessPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<div class="my-overlayUpdate" padding-top [hidden]="overlayHiddenUpdate" [class.my-overlay1]="!isKeyboardHide">
+    <ion-row no-padding>
+        <ion-col col-12 text-center no-padding padding-left padding-right>
+            Do you want to update Profile/Save it as a new profile?
+        </ion-col>
+        <ion-list col-12 no-padding padding-right radio-group [(ngModel)]="editUpdateProfile">
+            <ion-item col-6 no-padding text-center no-lines float-left>
+                <ion-label>New Profile</ion-label>
+                <ion-radio value="newProfile"></ion-radio>
+            </ion-item>
+            <ion-item col-6 no-padding text-center no-lines>
+                <ion-label>Update Profile</ion-label>
+                <ion-radio value="updateProfile"></ion-radio>
+            </ion-item>
+        </ion-list>
+
+        <ion-col col-6 class="pd-right">
+            <button ion-button type="button" (click)="closeUpdateOverlay();" full>Cancel</button>
+        </ion-col>
+        <ion-col col-6 class="pd-left">
+            <button ion-button type="button" class="bdr" full (click)="showSaveUpdate();">Ok</button>
+        </ion-col>
+    </ion-row>
+</div>
+
+<div class="my-overlay" padding [hidden]="overlayHidden" [class.my-overlay1]="!isKeyboardHide">
+    <ion-row>
+        <ion-col col-12 text-center color="primary" class="thankutext" no-padding>
+            New Profile Details
+        </ion-col>
+        <ion-col class="hgt" col-12 text-center color="primary" no-padding>
+            <ion-item no-padding>
+                <ion-input text-center placeholder="Enter Profile Name" [(ngModel)]="profileName" name="profileName" required></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-3 text-right class="f-size pd-top" (click)="takePictureOptions();">
+            <img class="imgWidth" [src]="selectedImg | safe:'resourceUrl'" />
+        </ion-col>
+        <ion-col col-9 text-left padding-top>
+            <span (click)="takePictureOptions();">{{imgText}}</span>
+            <ion-icon ios="ios-close-circle" md="md-close-circle" (click)="removeImage();"></ion-icon>
+        </ion-col>
+        <ion-col col-12>
+
+            <ion-item text-center no-lines>
+                <ion-label>Want to see your Profile</ion-label>
+                <ion-toggle [(ngModel)]='checkedProfile' name="checkedProfile"></ion-toggle>
+            </ion-item>
+        </ion-col>
+        <ion-col col-6 no-padding class="pd-right">
+            <button ion-button type="button" class="bdr" (click)="closeOverlay();" full>Cancel</button>
+        </ion-col>
+        <ion-col col-6 no-padding class="pd-left">
+            <button ion-button type="button" class="bdr" [disabled]="profileName == ''" full (click)="saveProfile();">Save</button>
+        </ion-col>
+    </ion-row>
+</div>
+
+<ion-content padding>
+    <div class="height-div iongrid" padding-top>
+        <ion-grid class="grid-height" *ngIf="orderData==null" padding-top>
+            <div class="section1" padding-top>
+                <ion-row text-center>
+                    <ion-col col-12>
+                        <ion-icon name="close-circle" class="iconcolor1"></ion-icon>
+                        <h3 class="sorrytext">Sorry!</h3>
+                        <h4 margin-bottom>Unfortunately, we were unable to process your order!</h4>
+                        <h4>Please try again later. </h4>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-grid>
+
+        <ion-grid class="grid-height" *ngIf="orderData!=null">
+            <div class="section1" margin-bottom>
+                <ion-row text-center margin-bottom>
+                    <ion-col col-12>
+                        <ion-icon name="ios-checkmark-circle" class="iconcolor"></ion-icon>
+                        <p class="thankutext">Thank You!</p>
+                        <p margin-bottom>Order placed successfully!</p>
+                        <p *ngIf="terminal.FT!=='AA'&& terminal.FT!=='DO'">Business Name:{{orderData[0].Name}} </p>
+                        <p *ngIf="terminal.FT=='AA' ||terminal.FT=='DO'">Merchant's Name:DeviseApps</p>
+                    </ion-col>
+                    <ion-col no-padding no-margin col-12 text-center>
+                        <p>Your Order(s):</p>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <div class="section2" margin-top>
+                <div *ngIf="orderData.length>0 && terminal.FT!=='AA' && terminal.FT!=='DO'">
+                    <ion-row text-center *ngFor="let data of orderData">
+                        <ion-col col-5>
+                            <p>Order No:</p>
+                            <p>Amount :</p>
+                        </ion-col>
+
+                        <ion-col col-1></ion-col>
+
+                        <ion-col col-6>
+                            <p>{{data.OrderId}}</p>
+                            <p>{{data.Amount}}</p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+
+                <ion-row class="ionrow" *ngIf="terminal.FT=='DO' || terminal.FT=='AA'">
+                    <ion-col col-6>
+                        <ion-label><strong>Check In Time</strong> </ion-label>
+                    </ion-col>
+                    <ion-col col-6 class="text-padding">
+                        <div float-left class="mr">:</div>
+                        <div>{{today}}</div>
+                    </ion-col>
+                </ion-row>
+                <div *ngIf="terminal.FT=='DO' || terminal.FT=='AA'">
+                    <ion-row class="ionrow" *ngFor="let data of formField">
+                        <ion-col col-6>
+                            <ion-label><strong>{{data.key}}</strong></ion-label>
+                        </ion-col>
+
+                        <ion-col col-6 class="text-padding">
+                            <div float-left class="mr">:</div>
+                            <div>{{data.value}}</div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+
+                <div *ngIf="terminal.FT=='AA'">
+                    <ion-row class="ionrow" *ngFor="let item of sectionItemField.items1">
+                        <ion-col col-6>
+                            <ion-label no-margin><strong>{{item.FN}}</strong></ion-label>
+                        </ion-col>
+                        <ion-col col-6 class="text-padding">
+                            <div float-left class="mr">:</div>
+                            <div>{{item.QTY}} x {{sectionItemField.CurrencySymbol}}{{item.Price}}</div>
+                        </ion-col>
+                        <ion-col col-12 class="fontsize1">
+                            <div>{{item.UnitOfSale}} {{item.Tag}}</div>
+                        </ion-col>
+                        <ion-col col-12 class="fontsize2 pd-bottom">
+                            <div>{{item.Note}}</div>
+                        </ion-col>
+                    </ion-row>
+
+
+
+                    <ion-row class="ionrow">
+                        <ion-col col-6>
+                            <ion-label><strong>Total</strong> </ion-label>
+                        </ion-col>
+
+                        <ion-col col-6 class="text-padding">
+                            <div float-left class="mr">:</div>
+                            <div>{{sectionItemField.total}}</div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div *ngIf="terminal.FT=='DO' || terminal.FT=='AA'">
+                    <ion-row class="ionrow">
+                        <ion-col col-6>
+                            <ion-label><strong>Appointment Time</strong> </ion-label>
+                        </ion-col>
+
+                        <ion-col col-6 class="text-padding">
+                            <div float-left class="mr">:</div>
+                            <div>{{orderData[0].AppointmentTime}}</div>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="ionrow">
+                        <ion-col col-6>
+                            <ion-label><strong>Appointment Date</strong> </ion-label>
+                        </ion-col>
+
+                        <ion-col col-6 class="text-padding">
+                            <div float-left class="mr">:</div>
+                            <div>{{orderData[0].AppointmentDate}}</div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="ionrow">
+                        <ion-col col-6>
+                            <ion-label><strong>TokenId</strong> </ion-label>
+                        </ion-col>
+
+                        <ion-col col-6 class="text-padding">
+                            <div float-left class="mr">:</div>
+                            <div>{{orderData[0].OrderId}}</div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+
+            </div>
+
+
+        </ion-grid>
+        <ion-row class="gridrowbotton" *ngIf="orderData!=null">
+            <ion-col col-6>
+                <button ion-button class="buttonion" float-right (click)="showOverlay();"><ion-icon name="clipboard"></ion-icon><span padding-left>Save Profile</span></button>
+            </ion-col>
+
+            <ion-col col-6>
+                <button ion-button class="buttonion" (click)="navigateToDashboard();">  <ion-icon ios="ios-home" md="md-home"></ion-icon><span padding-left>Home</span></button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="orderData==null">
+            <ion-col col-4></ion-col>
+            <button col-4 ion-button class="buttonion" (click)="navigateToDashboard();">  <ion-icon ios="ios-home" md="md-home"></ion-icon><span padding-left>Home</span></button>
+            <ion-col col-4></ion-col>
+        </ion-row>
+    </div>
+</ion-content>

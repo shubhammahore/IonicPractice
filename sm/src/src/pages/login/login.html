@@ -1,0 +1,112 @@
+<ion-header *ngIf="isKeyboardHide">
+
+    <ion-navbar>
+        <ion-title>
+            {{title}}
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+<ion-content [class.login-background]="!isOTPConfirmation" [class.onKeyboardShow]="!isKeyboardHide" [class.otp-background]="isOTPConfirmation">
+    <div *ngIf="!isOTPConfirmation; else block" class="height-div">
+        <ion-grid class="grid-height">
+            <ion-row text-center class="logomargin">
+                <ion-col col-12>
+                    <img src="assets/imgs/wrio-logo.png" class="logo-img" />
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12 text-center class="mg-top">
+                    <h1 class="app-title"><span><span class="word-color">W</span>RI<span class="word-color">O</span> - Write It Once</span>
+                    </h1>
+                </ion-col>
+            </ion-row>
+            
+            <ion-row class="gofbbutnrow">
+                <ion-col col-6 text-right>
+                    <button ion-button icon-start color="white" class="txt-color" (click)="loginThroughGoogle();">
+                    <ion-icon name="logo-google" color="danger" class="google-button"></ion-icon>
+                    &nbsp;&nbsp;Google
+                </button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button icon-start color="facebook" (click)="loginThroughFacebook();">
+                    <ion-icon name="logo-facebook" class="google-button"></ion-icon>
+                     &nbsp;&nbsp;Facebook
+                </button>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ortextrow">
+                <ion-col col-12 text-center>
+                    <p class="app-title1"> <strong>_________  OR  _________</strong></p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-footer>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-card>
+                        <ion-card-content>
+                            <form #oTPForm="ngForm">
+                                <ion-row>
+                                    <ion-col col-3>
+                                        <ion-item>
+                                            <ion-input type="text" name="countryCode" required placeholder="" [(ngModel)]="countryCode"></ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                    <ion-col col-9>
+                                        <ion-item>
+                                            <ion-input type="number" name="phoneNumber" pattern="[789][0-9]{9}" required placeholder="Mobile Number" [(ngModel)]="oTP.phoneNumber"></ion-input>
+                                        </ion-item>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row text-center>
+                                    <ion-col col-12>
+                                        <button ion-button (click)="generateOTP(oTP);" [disabled]="!oTPForm.form.valid">Login with OTP</button>
+                                    </ion-col>
+                                </ion-row>
+                            </form>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-footer>
+    </div>
+
+    <ng-template #block>
+        <ion-grid class="m-top">
+            <ion-row margin-top>
+                <ion-col col-12 text-center>
+                    <p class="text-font-size">Please sit relax try to automatically <br /> detecting SMS send to this mobile</p>
+                </ion-col>
+            </ion-row>
+            <ion-row margin-top>
+                <ion-col col-3>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-item>
+                        <ion-input type="number" name="OTP" class="input-mar" pattern="^[0-9]" placeholder="___   ___   ___   ___" [(ngModel)]="oTP.OTP" (ngModelChange)="changeValue($event)" #OTP></ion-input>
+                        <!-- <span *ngIf="OTP.t"></span> ₹ -->
+                    </ion-item>
+                </ion-col>
+                <ion-col col-3>
+                    <ion-icon name="exit" class="icon-font" (click)="oTPVerification(oTP);"></ion-icon>
+                </ion-col>
+            </ion-row>
+            <ion-row margin-top>
+                <ion-col col-6>
+                    <button ion-button icon-start color="primary" round (click)="generateOTP(oTP);">
+                                <ion-icon name="call"></ion-icon>
+                                &nbsp;&nbsp; Call Me
+                            </button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button icon-start color="primary" round (click)="changeNo();">
+                                <ion-icon name="keypad"></ion-icon>
+                                &nbsp;&nbsp; Change No
+                            </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-template>
+</ion-content>

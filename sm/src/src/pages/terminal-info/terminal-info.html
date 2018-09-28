@@ -1,0 +1,114 @@
+<!--
+  Generated template for the CompanyInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar #navbar>
+        <ion-title>
+            <img [src]="terminal.Image" float-right class="logo-Img" />
+            <div class="pwrap" *ngIf="terminal.TerminalName"> {{terminal.BusinessName|limit}}</div>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+
+        <ion-item margin-bottom>
+            <ion-label>Do not show me this page next time</ion-label>
+            <ion-toggle checked="false"></ion-toggle>
+        </ion-item>
+        <ion-card *ngIf="terminal.BusinessDescription">
+            <ion-card-header class="card-heading">
+                Business Description
+            </ion-card-header>
+            <ion-card-content class="business-description">
+                {{terminal.BusinessDescription}}
+            </ion-card-content>
+        </ion-card>
+
+        <ion-row *ngIf="terminal.TerminalImageLinks.length==0">
+            <ion-card>
+                <ion-card-content text-center><strong>Image Not Available</strong></ion-card-content>
+
+            </ion-card>
+
+        </ion-row>
+        <ion-row>
+            <ion-slides spaceBetween="59" slidesPerView="2" *ngIf="terminal.TerminalImageLinks.length>0">
+                <ion-slide *ngFor="let data of terminal.TerminalImageLinks">
+                    <ion-card class="slider-card">
+                        <ion-card-content class="slidercard-content">
+                            <div><img [src]="data" class="sliderimage" *ngIf="data; else elseblock" #imageToView (click)="onClickImage(imageToView)" />
+                                <ng-template #elseblock><img src="assets/imgs/default_ad.jpg" class="sliderimage" imageViewer> </ng-template>
+
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-slide>
+
+            </ion-slides>
+
+
+
+        </ion-row>
+        <ion-row *ngIf="terminal.FT=='CO'">
+            <button ion-button class="order-button" (click)="goToOrderForm(true)">SEND ENQUIRY </button>
+
+        </ion-row>
+
+        <ion-row *ngIf="terminal.FT!='CO' && terminal.FT!='ER' && terminal.FT!='DO' && terminal.FT!='AA'">
+            <button ion-button class="order-button" (click)="goToOrderForm(false)">ORDER HERE </button>
+
+        </ion-row>
+
+        <ion-row *ngIf="terminal.FT=='ER'">
+            <button ion-button class="order-button" (click)="goToOrderForm(true)">REGISTER </button>
+
+        </ion-row>
+        <ion-row *ngIf="terminal.AllowNoOrder==true" margin-top>
+            <button ion-button class="order-button" (click)="goToOrderForm(true)">MARK NO ORDER </button>
+
+        </ion-row>
+        <ion-row *ngIf="terminal.FT=='DO' || terminal.FT=='AA'">
+            <button ion-button class="order-button" (click)="goToOrderForm(true)">BOOK APPOINTMENT </button>
+
+        </ion-row>
+
+
+        <ion-row>
+            <ion-card *ngIf="terminal.Address">
+                <ion-card-header>
+                    <strong>Address</strong>
+                </ion-card-header>
+                <ion-card-content>
+
+                    <p>{{terminal.Address}} , {{terminal.City}} {{terminal.Zip}},</p>
+                    <p> {{terminal.State}} ,{{terminal.Country}}</p>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card (click)="sendEmail(terminal.EmailId)" *ngIf="terminal.EmailId">
+
+                <ion-card-header><strong>Email Id</strong> </ion-card-header>
+                <ion-card-content>{{terminal.EmailId}} </ion-card-content>
+
+            </ion-card>
+
+            <ion-card (click)="sendcall(terminal.MobileNo)" *ngIf="terminal.MobileNo">
+                <ion-card-header><strong>Contact Info</strong> </ion-card-header>
+                <ion-card-content>{{terminal.MobileNo}} </ion-card-content>
+            </ion-card>
+
+            <ion-card (click)="openbrowser(terminal.WebLink)" *ngIf="terminal.WebLink">
+                <ion-card-header><strong>Website </strong> </ion-card-header>
+                <ion-card-content>{{terminal.WebLink}} </ion-card-content>
+            </ion-card>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

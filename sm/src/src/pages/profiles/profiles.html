@@ -1,0 +1,42 @@
+<!--
+  Generated template for the ProfilesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <span padding-top>Profiles</span>
+      <span float-right>
+        <button ion-button icon-only (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+        </button>
+      </span>  
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list> 
+        <ion-item-sliding  *ngFor="let data of profileList">
+        <ion-item no-padding sliding (click)="goToViewDetail(data);">
+            <ion-row no-padding>
+                <ion-col col-3 no-padding>
+                  <ion-avatar col-12 item-start><img src="{{data.Image}}"></ion-avatar>
+                </ion-col>
+                <ion-col col-9 no-padding>
+                  {{data.ProfileName}}
+                </ion-col>
+           </ion-row>
+        </ion-item>
+        <ion-item-options side="right">
+            <button ion-button (click)="deleteProfile(item)">Delete</button>
+            <button ion-button (click)="setDefaultProfile(item)">Set It Default</button>
+        </ion-item-options>  
+      </ion-item-sliding>
+      </ion-list>
+</ion-content>

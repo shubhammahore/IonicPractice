@@ -1,0 +1,152 @@
+<ion-header *ngIf="!toggleview">
+
+    <ion-navbar #navbar>
+        <ion-title><span class="pwrap">Place Order</span>
+            <ion-icon ios="ios-search" md="md-search" float-right (click)="toggleItemView();"></ion-icon>
+        </ion-title>
+    </ion-navbar>
+
+
+
+</ion-header>
+
+<ion-header *ngIf="toggleview">
+    <ion-navbar>
+        <ion-title>
+            <span><ion-icon margin-top ios="ios-arrow-round-back" md="md-arrow-round-back" (click)="toggleItemView();"></ion-icon></span>
+            <ion-searchbar placeholder="Search" float-right class="serachview" [(ngModel)]="itemTerm" [formControl]="searchControl"></ion-searchbar>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-list>
+        <ion-item *ngFor="let data of terminal.Sections;let i=index" (click)="toggleSection(i)">
+
+            <ion-avatar float-left>
+                <ion-icon [name]="(!data.Open)?'arrow-forward':'arrow-down'"></ion-icon>
+                <img [src]="data.Image" />
+            </ion-avatar>
+            <h2>{{data.SectionName}}</h2>
+            <span>({{data.Items.length}} Products) </span>
+
+            <ion-list>
+                <ion-item *ngFor="let item of data.Items">
+                    <ion-avatar item-start>
+
+                        <img [src]="item.Image" />
+                    </ion-avatar>
+                    <h2>{{item.FN}}</h2>
+                    <span>{{data.Price}} 50 gm</span>
+
+                </ion-item>
+            </ion-list>
+        </ion-item>
+    </ion-list> -->
+
+    <ion-list *ngIf="!toggleview">
+        <div *ngFor="let data of terminal.Sections;let i=index;">
+            <ion-list-header (click)="toggleSection(i)" [class.section-color-inactive]="!data.Visible" [class.section-color]="data.Visible">
+                <ion-icon name="ios-arrow-down" *ngIf="!data.Visible" item-start></ion-icon>
+                <ion-icon name="ios-arrow-up" *ngIf="data.Visible" item-start></ion-icon>
+                <ion-avatar item-start>
+
+                    <img [src]="data.Image" *ngIf="data.Image; else elseblockingsec" />
+                    <ng-template #elseblockingsec><img src="assets/imgs/default_image.jpg"> </ng-template>
+                </ion-avatar>
+                <h2><strong>{{data.SectionName}}</strong></h2>
+                <p>({{data.Items.length}} Products)</p>
+                <span item-end>{{data.SectionTotal}}</span>
+            </ion-list-header>
+            <div *ngIf="data.Visible">
+                <ion-item *ngFor="let item of data.Items; let itemindex=index;">
+                    <ion-avatar class="avatar-container" item-start (click)="navigateToItemDetail(item)">
+                        <img src="assets/imgs/notes.png" class="note" *ngIf="item.Note" />
+                        <img [src]="item.Image" *ngIf="item.Image; else elseblocking" />
+                        <ng-template #elseblocking><img src="assets/imgs/default_image.jpg"> </ng-template>
+
+                    </ion-avatar>
+                    <h2>{{item.FN}}</h2>
+                    <p *ngIf="terminal.FT=='ER' && data.Items.length>0">{{data.Available_QTY}} Tickets Available</p>
+                    <p>{{terminal.CurrencySymbol}} {{item.Price}} <span margin-left>{{item.UnitOfSale}}</span><span margin-left>{{item.Tag}}</span></p>
+                    <ion-icon name="ios-remove-circle-outline" color="primary" item-end *ngIf="item.QTY>0" (click)="itemCount(i, itemindex, item.Id,'minus',false);"></ion-icon>
+                    <span item-end>{{item.QTY}}</span>
+
+                    <ion-icon *ngIf="terminal.FT!=='AA'" name="ios-add-circle-outline" color="primary" item-end (click)="itemCount(i, itemindex, item.Id,'plus',false);" (press)="showPromptSetQyt(i, itemindex, item.Id,'plus',true,item.QTY,false);"></ion-icon>
+                    <ion-icon *ngIf="terminal.FT=='AA' && item.QTY==0" name="ios-add-circle-outline" color="primary" item-end (click)="itemCount(i, itemindex, item.Id,'plus',false);"></ion-icon>
+                </ion-item>
+            </div>
+        </div>
+    </ion-list>
+
+
+
+
+    <!-- <ion-list *ngIf="toggleview">
+        <div *ngFor="let data of terminal.Sections;let i=index;">
+
+            <div>
+                <ion-item *ngFor="let item of data.Items; let itemindex=index;">
+                    <ion-avatar item-start>
+                        <img [src]="item.Image" *ngIf="item.Image; else elseblocking" />
+                        <ng-template #elseblocking><img src="assets/imgs/default_image.jpg"> </ng-template>
+
+                    </ion-avatar>
+                    <h2>{{item.FN}}</h2>
+                    <p>₹ {{item.Price}} <span margin-left>{{item.UnitOfSale}}</span></p>
+                    <ion-icon name="remove-circle" color="primary" item-end *ngIf="item.QTY>0" (click)="itemcount(i,itemindex,'minus');"></ion-icon>
+                    <span item-end>{{item.QTY}}</span>
+
+                    <ion-icon name="add-circle" color="primary" item-end (click)="itemcount(i,itemindex,'plus');"></ion-icon>
+                </ion-item>
+            </div>
+        </div>
+    </ion-list> -->
+
+    <ion-list *ngIf="toggleview">
+        <ion-item *ngFor="let item of searchItemsDataDisplay;let i=index">
+            <img src="assets/imgs/notes.png" class="note" *ngIf="item.Note" />
+            <ion-avatar item-start>
+                <img [src]="item.Image" *ngIf="item.Image; else elseblocking" />
+                <ng-template #elseblocking><img src="assets/imgs/default_image.jpg"> </ng-template>
+
+            </ion-avatar>
+            <h2>{{item.FN}}</h2>
+            <p>₹ {{item.Price}} <span margin-left>{{item.UnitOfSale}}</span></p>
+            <ion-icon name="ios-remove-circle-outline" color="primary" item-end *ngIf="item.QTY>0" (click)="searchItemCount(item.SectionId, item.Id, 'minus',false);"></ion-icon>
+            <span item-end>{{item.QTY}}</span>
+
+            <ion-icon name="ios-add-circle-outline" color="primary" item-end (click)="searchItemCount(item.SectionId, item.Id, 'plus',false);" (press)="showPromptSetQyt(-1, -1, item.Id,'plus',true,item.QTY,true,item.SectionId);"></ion-icon>
+        </ion-item>
+    </ion-list>
+
+
+
+
+
+</ion-content>
+
+
+
+
+
+
+
+
+<ion-footer>
+
+    <ion-row (click)="navigateTO();" class="footer-row">
+        <ion-col col-4 class="pading">
+            <span class="text"> Checkout </span>
+        </ion-col>
+        <ion-col col-6 text-right class="pading">
+            <span class="text"> ₹ {{sectionObj.total}} </span>
+        </ion-col>
+        <ion-col col-2 text-right no-padding>
+            <div text-center float-right class="iconfontsize pading">
+                <ion-icon color="white" name="ios-arrow-forward"></ion-icon>
+            </div>
+        </ion-col>
+    </ion-row>
+
+</ion-footer>

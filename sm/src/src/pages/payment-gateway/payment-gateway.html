@@ -1,0 +1,44 @@
+<!--
+  Generated template for the PaymentGatewayPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar #navbar>
+        <ion-title>Payment</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-row margin-bottom>
+        <ion-col col-6 class="crop">
+            <img src="assets/imgs/moobile_pay_symbol.png">
+        </ion-col>
+        <ion-col col-6 class="cashlessText">
+            Go Cash Less
+        </ion-col>
+    </ion-row>
+    <ion-row margin-top>
+        <ion-col col-12 text-center class="payment-text" margin-bottom>
+            Payment using:
+        </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let data of paymentOpt">
+        <ion-col col-2></ion-col>
+        <button col-8 ion-button type="button" class="b-rad f-style" full (click)="showMessage(data);">{{data.PaymentName}}</button>
+        <ion-col col-2></ion-col>
+    </ion-row>
+
+
+</ion-content>
+<ion-footer>
+    <ion-row>
+        <ion-col col-4></ion-col>
+        <button col-4 ion-button type="button" class="b-rad case" (click)="goBackConfirm()" full>Cancel</button>
+        <ion-col col-4></ion-col>
+    </ion-row>
+</ion-footer>

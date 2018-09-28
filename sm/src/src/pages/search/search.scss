@@ -1,0 +1,119 @@
+page-search {
+    ion-content {
+        background-image: url('../assets/imgs/other_screen_bg.png');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+    .search {
+        width: 103% !important;
+        margin-top: -5px !important;
+        margin-left: -6px !important;
+    }
+    .my-overlay {
+        position: fixed;
+        width: 80%;
+        height: 25%;
+        background: #fff;
+        z-index: 20;
+        top: 25%;
+        left: 10%;
+        box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.6);
+        padding-bottom: 10px;
+    }
+    $alert-md-message-text-color:red;
+    // .searchbar-search-icon {
+    //     display: none;
+    // }
+    // .ion-avatar {
+    //     height: 70px !important;
+    //     width: 80px !important;
+    // }
+    .marquee {
+        display: inline-block;
+        animation: marquee 10s linear infinite;
+    }
+    .marquee2 {
+        display: inline-block;
+        animation: marquee2 10s linear infinite;
+        animation-delay: 5s;
+    }
+    @keyframes marquee {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(-100%);
+        }
+    }
+    @keyframes marquee2 {
+        from {
+            transform: translateX(0%);
+        }
+        to {
+            transform: translateX(-200%);
+        }
+    }
+    .imgrecent {
+        height: 60px !important;
+        width: 65px !important;
+    }
+    .paraopen {
+        font-size: 16px !important;
+        color: #008e76 !important;
+    }
+    .paraclosed {
+        font-size: 16px !important;
+        color: red !important;
+    }
+    // hr {
+    //     background-color: silver !important;
+    // }
+    .qr {
+        height: 30px !important;
+        width: 35px !important;
+    }
+    .errorserach-icon {
+        float: center !important;
+        width: 50px !important;
+    }
+    .ionicon {
+        font-size: 45px;
+        color: silver;
+    }
+    .defaultimglist {
+        text-align: center;
+        margin-top: 54%;
+    }
+    .Recentlytitle-color {
+        color: #008e76;
+        margin-left: 15px;
+        margin-top: 0;
+    }
+    .sliderimage {
+        width: 100%;
+        height: 50%;
+    }
+    .sliderdiv {
+        background-color: #333;
+        width: 100%;
+        height: 26px;
+        color: #ffffff;
+        padding-top: 3px;
+    }
+    .slider-card {
+        border-radius: 7px !important;
+        width: 90% !important;
+        height: 95px !important;
+        border: solid 2px #008e76;
+    }
+    .ioncardcontent {
+        padding: 0;
+    }
+    .recentlyspan {
+        padding-top: 5px;
+    }
+    .overlay1 {
+        height: 45% !important;
+    }
+}

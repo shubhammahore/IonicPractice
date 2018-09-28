@@ -1,0 +1,16 @@
+page-viewlog {
+    .label-md {
+        margin: 0px;
+    }
+
+    .scroll-content {
+        overflow: hidden;
+    }
+    .list-md {
+        overflow: scroll !important;
+        height: 90% !important;
+    }
+    .row-footer {
+        font-size: 10px;
+    }
+}

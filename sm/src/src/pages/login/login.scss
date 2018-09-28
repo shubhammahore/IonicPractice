@@ -1,0 +1,107 @@
+        page-login {
+            .scroll-content {
+                position: absolute !important;
+                top: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                margin-top: 0 !important;
+            }
+            .m-top {
+                margin-top: 15% !important;
+            }
+            .login-background {
+                background-image: url('../assets/imgs/homescreen_bg.png');
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+            }
+            .otp-background {
+                background-color: #ffffff;
+            }
+            .card-md {
+                border-radius: 5px !important;
+            }
+            .app-title * {
+                color: #ffffff;
+                font-size: 3rem !important;
+                font-weight: 700 !important;
+            }
+            .mg-top {
+                margin-top: 0% !important;
+            }
+            .app-title1 * {
+                color: #ffffff;
+                font-size: 1.7rem !important;
+            }
+            .card-md .item-inner {
+                border-bottom: 1px solid #dedede !important;
+            }
+            .card-ios .item-inner {
+                border-bottom: 1px solid #dedede !important;
+            }
+            .word-color {
+                color: #1abc9c;
+                font-size: 1.5em;
+            }
+            .bottom-ele {
+                position: fixed;
+                bottom: 7px;
+                width: 97%;
+            }
+            .logo-img {
+                width: 200px;
+                height: 200px;
+            }
+            .onKeyboardShow {
+                .scroll-content {
+                    padding-bottom: 0px !important;
+                    overflow: hidden !important;
+                }
+                .scroll-content .height-div .grid-height .logomargin {
+                    margin-top: 0% !important;
+                }
+                .mg-top {
+                    margin-top: 10%!important;
+                }
+            }
+            .card-content-md {
+                padding: 0;
+            }
+            .txt-color {
+                color: #666
+            }
+            .google-button {
+                border-right: 1px solid silver;
+            }
+            .logomargin {
+                margin-top: 20% !important;
+            }
+            .gofbbutnrow {
+                margin-top: 12% !important;
+            }
+            .ortextrow {
+                margin-top: 3% !important;
+            }
+            ion-footer {
+                position: relative !important;
+            }
+            .height-div {
+                height: 100% !important;
+            }
+            .grid-height {
+                height: 76% !important;
+            }
+            @media screen and (max-width: 500px) {
+                .logo-img {
+                    width: 100px;
+                    height: 100px;
+                }
+                .app-title * {
+                    color: #ffffff;
+                    font-size: 1em;
+                }
+                .word-color {
+                    color: #1abc9c;
+                }
+            }
+        }

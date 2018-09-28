@@ -1,0 +1,62 @@
+page-book-appointment {
+    .backBtn {
+        position: absolute;
+        left: 20vw;
+        top: 40vh;
+        width: 15vw;
+        height: 15vw;
+        border-radius: 50%;
+        border: none;
+        background: red;
+    }
+    .nextBtn {
+        position: absolute;
+        right: 20vw;
+        top: 40vh;
+        width: 15vw;
+        height: 15vw;
+        border-radius: 50%;
+        border: none;
+        background: green;
+    }
+    .pd {
+        padding: 5px;
+        border-radius: 78px;
+    }
+    .button-md-light {
+        color: #000;
+        background-color: #fff !important;
+        box-shadow: none !important;
+    }
+    .swiper-container {
+        margin: 5px;
+    }
+    .red {
+        background-color: red;
+    }
+    .green {
+        background-color: green
+    }
+    .gray {
+        background-color: #333;
+    }
+    // background-color: #333;
+    .date-slot {
+        color: #fff;
+        padding: 14px;
+        margin-right: 4px;
+        margin-bottom: 5px;
+        max-width: 30.33333% !important;
+    }
+    .slidename {
+        font-size: 10px;
+    }
+    .slidedescr {
+        font-size: 6px;
+        color: gray
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+        background-size: 27px 20px !important;
+    }
+}

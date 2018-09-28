@@ -1,0 +1,118 @@
+<!-- <ion-header>
+
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+
+</ion-header> -->
+
+<div class="my-overlay" padding [hidden]="overlayHidden" [class.my-overlay1]="!isKeyboardHide">
+    <ion-row>
+        <ion-col col-12>
+            <ion-item>
+                <ion-label color="primary" floating>Enter Terminal Access Key</ion-label>
+                <ion-input type="number" pattern="^[0-9]{4}$" [(ngModel)]="terminalAccessKey" (ngModelChange)="valueChange($event)"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-12>
+            <button ion-button (click)="hideOverlayData()" float-right>Proceed</button>
+            <button ion-button (click)="hideOverlay()" float-right>Cancel</button>
+        </ion-col>
+    </ion-row>
+</div>
+
+<ion-content class="dashboardback" [class.onKeyboardShow]="!isKeyboardHide">
+
+    <ion-grid>
+        <ion-row padding-top text-center margin-top>
+            
+            <!-- <ion-col col-4>
+            </ion-col> -->
+            <ion-col col-12>
+                <img src="assets/imgs/wrio-logo.png" class="logo-img" />
+            </ion-col>
+            <!-- <ion-col col-4>
+            </ion-col> -->
+        </ion-row>
+        <ion-row padding-top>
+            <ion-col col-12 text-center>
+                <h1 class="title"><span class="word-color">W</span>RI<span class="word-color">O</span> </h1>
+                <h5 class="title"> <span class="word-color">Write</span> it Once Use It <span class="word-color">Forever</span> </h5>
+            </ion-col>
+        </ion-row>
+
+        <ion-row padding-top margin-top>
+            <ion-slides spaceBetween="59" slidesPerView="2">
+                <ion-slide *ngFor="let data of terminal" (click)="goToTerminalInfo(data.WrioCode);">
+                    <ion-card>
+                        <ion-card-content>
+                            <div><img [src]="data.Image" class="sliderimage" />
+
+                            </div>
+
+                            <div class="sliderdiv">
+                                <!-- <span *ngIf="data.Description && data.Description.length <= 22;else block">{{data.Description}}</span>
+                                <ng-template #block *ngIf="data.TerminalName && data.TerminalName.length <= 22">{{data.TerminalName}}</ng-template>
+
+                                <div *ngIf="data.Description && data.Description.length > 22;else block">
+                                    <div class="marquee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.Description}}</div>
+                                    <div class="marquee2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.Description}}</div>
+                                </div>
+                                <ng-template #block *ngIf="data.TerminalName && data.TerminalName.length > 22">
+                                    <div class="marquee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.TerminalName}}</div>
+                                    <div class="marquee2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{data.TerminalName}}</div>
+                                </ng-template> -->
+
+
+                                <div *ngIf="data.TerminalName && data.TerminalName.length > 22;else block">
+                                    <div class="marquee">&nbsp;&nbsp;&nbsp;{{data.TerminalName}}</div>
+                                    <div class="marquee2">&nbsp;&nbsp;&nbsp;{{data.TerminalName}}</div>
+                                </div>
+                                <ng-template #block>
+                                    <p class="ptname">{{data.TerminalName|limit}}</p>
+                                </ng-template>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-slide>
+                <!-- <ion-slide>
+                    <img src="../../assets/imgs/Image2.jpg" class="sliderimage" />
+                </ion-slide>
+                <ion-slide>
+                    <img src="../../assets/imgs/Image3.jpg" class="sliderimage" />
+                </ion-slide> -->
+            </ion-slides>
+        </ion-row>
+
+
+        <ion-row class="rows">
+            <ion-col class="cols" (click)="search()">
+                <p class="psernpro">
+                    <ion-icon name="search"></ion-icon>
+                </p>
+                <p text-uppercase class="psernpro">Search</p>
+            </ion-col>
+            <ion-col class="cols" (click)="viewLogs();">
+                    <p class="psernpro">
+                        <ion-icon name="list-box"></ion-icon>
+                    </p>
+                    <p text-uppercase class="psernpro">Activities</p>
+            </ion-col>
+            <!-- <ion-col class="cols" (click)="viewLog();">
+                <p class="pactivity">
+                    <img src="assets/icon/ic_activities.png" />
+                    <ion-icon name="document"></ion-icon> -->
+                <!-- </p>
+                <p text-uppercase class="pactivity txt-margin">Activities</p>
+            </ion-col>  -->
+            <ion-col class="cols">
+                <p class="psernpro">
+                    <ion-icon name="people" (click)="viewProfiles();"></ion-icon>
+                </p>
+                <p text-uppercase class="psernpro">Profiles</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>

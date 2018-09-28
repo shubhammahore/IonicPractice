@@ -1,0 +1,130 @@
+page-confirm-order {
+    ion-content {
+        overflow: hidden !important;
+    }
+    .scroll-content {
+        overflow: hidden !important;
+    }
+     ::-webkit-scrollbar-track {
+        // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+        border-radius: 8px!important;
+        background-color: #fff!important;
+    }
+     ::-webkit-scrollbar {
+        width: 6px!important;
+        background-color: #fff!important;
+    }
+     ::-webkit-scrollbar-thumb {
+        border-radius: 8px!important;
+        // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)!important;
+        background-color: #928f8f!important
+    }
+    // ion-list {
+    //     border: 1px solid #000000;
+    //     height: 90% !important;
+    //     overflow-y: scroll !important;
+    // }
+    .ionrow {
+        border-bottom: 1px solid black;
+    }
+    .height {
+        border: 1px solid #000000;
+        overflow-y: scroll !important;
+    }
+    .fontsize1 {
+        font-size: 0.9rem !important;
+        padding: 0px !important;
+    }
+    .fontsize2 {
+        font-size: 1.2rem !important;
+        color: #A9A9A9 !important;
+        padding: 0px !important;
+    }
+    .pd-left {
+        padding-left: 0px !important;
+    }
+    .pd-bottom {
+        padding-bottom: 5px !important;
+    }
+    .confirm-button {
+        padding: 0 4%!important;
+        margin-top: 5%!important;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+    .buttonion {
+        background-color: #1abc9c;
+        text-align: center;
+        width: 100%;
+        padding: 7px;
+        box-shadow: 0px 2px 5px 2px #ccc;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+    ion-label {
+        white-space: normal !important;
+    }
+    .mr {
+        margin-right: 5px;
+        height: 100% !important;
+    }
+    .main-div {
+        height: 90% !important;
+    }
+    .buttonion {
+        background-color: #008e76;
+        text-align: center;
+        padding: 7px;
+        width: 100% !important;
+    }
+    .gridrowbotton {
+        text-align: center;
+    }
+    .my-overlay {
+        position: fixed;
+        width: 80%;
+        height: 52%;
+        background: #fff;
+        z-index: 20;
+        top: 25%;
+        left: 10%;
+        box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.6);
+        padding-bottom: 10px;
+    }
+    .hgt {
+        .item-block {
+            min-height: fit-content !important;
+        }
+    }
+    .pd-left {
+        padding-left: 0.2rem !important;
+    }
+    .pd-right {
+        padding-right: 0.2rem !important;
+    }
+    .thankutext {
+        color: #00bfa5;
+        font-size: 20px;
+    }
+    .my-overlayUpdate {
+        position: fixed;
+        width: 64%;
+        height: 33%;
+        background: #fff;
+        z-index: 20;
+        top: 25%;
+        left: 20%;
+        box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.6);
+    }
+    .my-overlay1 {
+        height: 80% !important;
+    }
+    .imgWidth {
+        width: 46px !important;
+        height: 46px !important;
+    }
+}

@@ -1,0 +1,42 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>
+            <div class="pwrap">User Registration</div>
+        </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Please enter your name</ion-label>
+            <ion-input type="text" [(ngModel)]="user.Uname"></ion-input>
+        </ion-item>
+
+        <ion-list radio-group [(ngModel)]="user.UserRole">
+
+            <ion-list-header>
+                Select Your Role
+            </ion-list-header>
+            <ion-item *ngFor="let role of roles">
+                <ion-label>{{role.label}}</ion-label>
+                <ion-radio [value]="role.value"> </ion-radio>
+            </ion-item>
+            <ion-item>
+                <button ion-button icon-start (click)="takePictureOptions();" round>
+                    <ion-icon name="attach"></ion-icon>
+                    Take Picture
+                </button>
+
+                <ion-col col-12 *ngIf="filename" no-padding>
+                    <span>{{filename}}</span>
+                    <ion-icon float-right name="close" (click)="Removefile();"></ion-icon>
+                </ion-col>
+            </ion-item>
+        </ion-list>
+        <button ion-button full margin-top (click)="userRegistration(user);" [disabled]="user.Uname==''">Submit</button>
+    </ion-list>
+</ion-content>

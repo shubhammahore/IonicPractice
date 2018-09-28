@@ -1,0 +1,102 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar #navbar>
+
+        <ion-title>
+            <img src="assets/icon/ic_qr_scan.png" float-right class="qr">
+            <!-- <ion-icon name="ios-barcode-outline" float-right class="qr" (click)="scan()"></ion-icon> -->
+            <div class="pwrap">Search Business</div>
+        </ion-title>
+
+    </ion-navbar>
+
+</ion-header>
+<div class="my-overlay" padding [hidden]="overlayHidden" [class.overlay1]="!isKeyboardHide">
+    <ion-row>
+        <ion-col col-12>
+            <ion-item>
+                <ion-label color="primary" floating>Enter Terminal Access Key</ion-label>
+                <ion-input type="number" pattern="^[0-9]{4}$" [(ngModel)]="terminalAccessKey" (ngModelChange)="valueChange($event)"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col col-12>
+            <button ion-button (click)="hideOverlayData()" float-right>Proceed</button>
+            <button ion-button (click)="hideOverlay()" float-right>Cancel</button>
+        </ion-col>
+    </ion-row>
+</div>
+<ion-content>
+    <ion-searchbar placeholder="Search Business/Event" class="search" [(ngModel)]="serachTerm" (ionInput)="search($event)"></ion-searchbar>
+
+
+
+    <ion-row *ngIf="terminal.length==0 && serachTerm==''">
+
+        <h6 class="Recentlytitle-color">Recently Used</h6>
+
+
+
+        <ion-slides spaceBetween="13" slidesPerView="3">
+            <ion-slide *ngFor="let recentitem of  recentTerminal " (click)='goToDetailPage(recentitem.WrioCode);'>
+                <ion-card class="slider-card">
+                    <ion-card-content class="ioncardcontent">
+                        <ion-item text-center>
+                            <ion-avatar>
+                                <img [src]="recentitem.Image" *ngIf="recentitem.Image; else elseblock">
+                                <ng-template #elseblock><img src="assets/imgs/wrio-logo.png"> </ng-template>
+
+                            </ion-avatar>
+
+                            <div *ngIf="recentitem.TerminalName && recentitem.TerminalName.length > 7;else block">
+                                <div class="marquee">&nbsp;&nbsp;&nbsp;{{recentitem.TerminalName}}</div>
+                                <div class="marquee2">&nbsp;&nbsp;&nbsp;{{recentitem.TerminalName}}</div>
+                            </div>
+                            <ng-template #block>
+                                <p>{{recentitem.TerminalName|limit}}</p>
+                            </ng-template>
+
+                        </ion-item>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+
+    </ion-row>
+
+
+
+
+
+    <ion-list *ngIf="terminal.length==0 && serachTerm!=''" class="defaultimglist">
+        <p>
+            <ion-icon ios="ios-search" md="md-search" class="ionicon"></ion-icon>
+        </p>
+        <span>No Records Found!!! </span>
+
+    </ion-list>
+
+    <ion-list *ngIf="terminal.length>0">
+
+        <ion-item *ngFor="let data of terminal" (click)="goToDisplayPage(data.Status,data.WrioCode,data.IsPrivate);">
+            <ion-avatar item-start>
+                <img [src]="data.Image" *ngIf="data.Image; else elseblockimg" />
+                <ng-template #elseblockimg><img src="assets/imgs/default_image.jpg"> </ng-template>
+            </ion-avatar>
+            <h2 margin-bottom="50px"><strong>{{data.TerminalName|limit}}</strong></h2>
+            <p><span *ngIf="data.Status=='ON';else elseblock" class="paraopen">Open</span>
+                <ng-template #elseblock><span class="paraclosed">Closed</span></ng-template>
+                <span float-right *ngIf="data.IsPrivate==false;else privateblock" class="paraopen">Public</span>
+                <ng-template #privateblock><span float-right class="paraclosed">private</span></ng-template>
+
+            </p>
+
+
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,67 @@
+<!--
+  Generated template for the ViewlogPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>View Log</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row>
+    <ion-col col-6>
+        <ion-item>
+            <ion-label floating>From Date</ion-label>
+            <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY"  [(ngModel)]="startDate" (ionChange)="parseViewLog();"></ion-datetime>
+          </ion-item>
+    </ion-col>
+    <ion-col col-6>
+        <ion-item>
+            <ion-label floating>To Date</ion-label>
+            <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY"  [(ngModel)]="endDate" (ionChange)="parseViewLog();"></ion-datetime>
+          </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-list> 
+    <ion-item-sliding  *ngFor="let data of viewLogList">
+    <ion-item sliding (click)="goToViewDetail(data);">
+        <ion-row no-padding>
+            <ion-col col-3 no-padding>
+              <ion-avatar col-12 item-start><img src="{{data.TerminalImage}}"></ion-avatar>
+            </ion-col>
+            <ion-col col-9 no-padding>
+                  <div style="font-size: medium">{{data.BussinessName}}</div>
+                  <div style="font-size: small">{{data[data.ShowInvoice]}}</div>
+                  <div style="font-size: small">Order No: {{data.WrioCode}}-{{data.TokenId}}</div>
+                  <div>
+                    <span style="font-size: smaller; color: orange" text-left *ngIf="data.CheckedIn=='N'"><strong>Waiting</strong></span> 
+                    <span style="font-size: smaller; color: red" text-left *ngIf="data.CheckedIn=='C'" ><strong>Cancelled</strong></span> 
+                    <span style="font-size: smaller; color: green" text-left *ngIf="data.CheckedIn=='CO'"><strong>Completed</strong></span> 
+                    <span style="font-size: smaller; color: lightgreen" text-left *ngIf="data.CheckedIn=='CN'"><strong>Confirmed</strong></span> 
+                    <span style="font-size: smaller; color: darkblue" text-left *ngIf="data.CheckedIn=='DP'"><strong>Dispatched</strong></span> 
+                    <span style="font-size: smaller; color: green" text-left *ngIf="data.CheckedIn=='AT'"><strong>Attended</strong></span> 
+                    <span style="font-size: smaller" float-right>{{dateFormat(data["Check In Time"])}}</span>
+                  </div>
+            </ion-col>
+       </ion-row>
+    </ion-item>
+    <ion-item-options side="right">
+        <button ion-button (click)="favorite(item)">Favorite</button>
+        <button ion-button (click)="share(item)">Share</button>
+    </ion-item-options>  
+  </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-row>
+      <ion-col *ngIf="viewLogList.length>=0">Total Orders: {{viewLogList.length}}</ion-col>
+      <ion-col>Total Amount: {{total}}</ion-col>
+    </ion-row>
+</ion-footer>

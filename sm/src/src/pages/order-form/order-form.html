@@ -1,0 +1,191 @@
+<!--
+  Generated template for the OrderFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <img [src]="terminal.Image" float-right class="logo-Img" (click)="navigateTo();" />
+        <ion-icon color="black" class="iconstyle" name="md-heart-outline" float-right></ion-icon>
+        <ion-title>
+            <div class="pwrap">{{this.terminal.FormName}}</div>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<div class="my-overlay zindex" padding [hidden]="overlayHideFilter">
+    <ion-row>
+        <ion-col col-12 text-center class="b-btm f-size">
+            Sort and Filter
+        </ion-col>
+
+        <ion-col col-10 no-padding class="f-size">
+            <ion-item no-lines>
+                <ion-label col-4>Sort</ion-label>
+                <ion-select col-8 [(ngModel)]="sortValueModel" (ngModelChange)="sortProfile();">
+                    <ion-option value="showAll" selected>Show All</ion-option>
+                    <ion-option *ngFor="let terminalFormField of terminalFormFields" [value]="terminalFormField.label">{{terminalFormField.label}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-col>
+        <ion-col col-2 class="f-size" padding (click)="changeIcon();">
+            <ion-icon [name]="sortIcon"></ion-icon>
+            <!-- <ion-icon ios="ios-arrow-up" md="md-arrow-up"></ion-icon> -->
+        </ion-col>
+
+        <ion-col col-10 no-padding class="f-size">
+            <ion-item no-lines>
+                <ion-label col-4>Filter</ion-label>
+                <ion-select col-8 [(ngModel)]="filterValueModel" (ngModelChange)="filterValue(filterValueModel);">
+                    <ion-option value="showAll" selected>Show All</ion-option>
+                    <ion-option *ngFor="let terminalFormField of terminalFormFields" [value]="terminalFormField.label">{{terminalFormField.label}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-col>
+        <!-- <ion-col col-2>
+        </ion-col> -->
+
+        <ion-col col-12 class="f-size b-btm min-hgt1">
+            <p class="displayFilterValColor"> {{displayFilterVal}}</p>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="grid-height2">
+        <ion-col col-12>
+            <ion-item no-padding *ngFor="let data of filterValueArry" (click)="DisplayFilterValue(data.filtervalue);">
+                <ion-col col-12 item-content>
+                    {{data.filtervalue}}
+                </ion-col>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-6 no-padding class="pd-right">
+            <button ion-button type="button" class="bdr" full (click)="filterMainProfile()">Apply</button>
+        </ion-col>
+        <ion-col col-6 no-padding class="pd-left">
+            <button ion-button type="button" class="bdr" full (click)="closeFilter('Cancel');">Cancel</button>
+        </ion-col>
+        <ion-col col-12 no-padding>
+            <button ion-button type="button" class="bdr" full (click)="closeFilter('Clear');">Clear</button>
+        </ion-col>
+    </ion-row>
+</div>
+
+<div class="my-overlay" padding [hidden]="overlayHidden">
+    <ion-row>
+        <ion-col col-12 text-center class="b-btm f-size">
+            Select Profile
+        </ion-col>
+        <ion-col col-10 text-right class="f-size pd-top" (click)="openFilter();">Filter</ion-col>
+        <ion-col col-2 text-left class="m-left" (click)="openFilter();">
+            <ion-icon ios="ios-options" md="md-options" [class.filter]="displayFilterVal"></ion-icon>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="grid-height1">
+        <ion-col col-12>
+            <ion-item no-padding (click)="getFormFiledPopulate(0)">
+                <ion-col col-3 item-content>
+                    <img [src]="'assets/icon/user.jpg' | safe:'resourceUrl'">
+                </ion-col>
+                <ion-col col-9 item-content>
+                    Select Profile
+                </ion-col>
+            </ion-item>
+            <ion-item no-padding *ngFor="let data of mainprofile" (click)="getFormFiledPopulate(data.Id)">
+                <ion-col col-3 item-content>
+                    <img [src]="data.Image | safe:'resourceUrl'">
+                </ion-col>
+                <ion-col col-9 item-content>
+                    {{data.ProfileName}}
+                </ion-col>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+</div>
+
+<ion-content padding [class.onKeyboardShow]="!isKeyboardHide">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="isDisplay==true">
+        <div class="height-div">
+            <ion-row class="min-hgt" (click)="showFilterPopUp();">
+
+                <ion-col col-12 no-padding>
+                    <ion-card class="profile-container">
+                        <img [src]="prof.Image | safe:'resourceUrl'" class="displayimage">
+                        <p class="cardimagp">{{prof.ProfileName}}</p>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ion-row class="grid-height">
+                <ion-col col-12 *ngIf="terminalFormFields.length > 0">
+                    <ion-item *ngFor="let terminalFormField of terminalFormFields" [ngSwitch]="terminalFormField.controlType">
+                        <ion-label color="primary" floating *ngIf="terminalFormField.isCheck !== 'CK' && terminalFormField.isCheck !== 'SW'"><span *ngIf="terminalFormField.required===true">*</span>{{terminalFormField.label}}</ion-label>
+                        <ion-label color="primary" *ngIf="terminalFormField.isCheck === 'CK' || terminalFormField.isCheck === 'SW'"><span *ngIf="terminalFormField.required===true">*</span>{{terminalFormField.label}}</ion-label>
+
+                        <ion-input [formControlName]="terminalFormField.key" [id]="terminalFormField.key" [type]="terminalFormField.type" [pattern]="terminalFormField.pattern" *ngIf="terminalFormField.controlType == 'textbox' && terminalFormField.KT !=='P'"></ion-input>
+
+                        <ion-input [formControlName]="terminalFormField.key" [type]="terminalFormField.type" [(ngModel)]="number" name="number" *ngIf="terminalFormField.controlType == 'textbox' && terminalFormField.KT =='P'" (focus)="getnumber();" [pattern]="terminalFormField.pattern"></ion-input>
+
+                        <ion-select *ngSwitchCase=" 'dropdown' " [formControlName]="terminalFormField.key ">
+                            <ion-option *ngFor="let opt of terminalFormField.options " [value]="opt.DV ">{{opt.DV}}</ion-option>
+                        </ion-select>
+
+                        <ion-datetime *ngSwitchCase=" 'datetime' " displayFormat="DD MMM YYYY" [formControlName]="terminalFormField.key " [(ngModel)]="SelectedDate" name="CurrentDate" (ionChange)="dateFormat();"></ion-datetime>
+
+                        <ion-checkbox *ngSwitchCase=" 'checkbox' " [formControlName]="terminalFormField.key "></ion-checkbox>
+                        <ion-toggle *ngSwitchCase=" 'toggle' " [formControlName]="terminalFormField.key"></ion-toggle>
+                        <ion-col col-12 item-content *ngSwitchCase=" 'file' ">
+                            <ion-col col-12 no-padding *ngIf="!filename">
+                                <button ion-button type="button" (click)="takePictureOptions();" round>
+                                    <ion-icon name="attach" class="m-right"></ion-icon>File Attachment
+                                </button>
+                                <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" webkitdirectory> -->
+                            </ion-col>
+                            <ion-col col-2 float-left *ngIf="filename" no-padding>
+                                <img class="imgWidth" *ngIf="fileExtention === 'pdf'" src="assets/icon/pdf_icon.png">
+                                <img class="imgWidth" *ngIf="fileExtention === 'docx' || fileExtention === 'doc'" src="assets/imgs/ic_doc.png">
+                                <img class="imgWidth" *ngIf="fileExtention === 'xlsx' || fileExtention === 'accdb'" src="assets/icon/xl_icon.png">
+                                <img class="imgWidth" *ngIf="uploadfilename && (fileExtention === 'jpg' || fileExtention === 'png' || fileExtention === 'jpeg' || fileExtention === 'gif')" [src]="uploadfilename | safe:'resourceUrl'">
+                            </ion-col>
+                            <ion-col float-left margin-top col-10 *ngIf="filename" no-padding>
+                                <span>{{filename}}</span>
+                                <span float-right><ion-icon name="close" (click)="Removefile();"></ion-icon></span>
+                            </ion-col>
+                        </ion-col>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <!-- <ion-row no-padding class="disclaimer " *ngIf="isKeyboardHide "> -->
+            <ion-row no-padding *ngIf="isKeyboardHide">
+                <ion-col col-12 no-padding>
+                    <ion-card no-padding class="card-hgt">
+                        <ion-card-content no-padding>
+                            <div class="marqueText " no-padding>
+                                <div class="marquee " *ngIf="terminal.Disclaimer && terminal.Disclaimer.length> 50;else block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{terminal.Disclaimer}}</div>
+                                <ng-template #block>
+                                    <div text-center class="colorFont">
+                                        {{terminal.Disclaimer}}
+                                    </div>
+                                </ng-template>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col col-12>
+                    <div no-padding class="fontSize">By clicking on the next button, I agree to share my information to {{terminal.TerminalName}} and <a href="https://customer.wrio.in/terms.php">www.customer.wrio.in</a> Please refer terms and conditions here</div>
+                </ion-col>
+                <ion-col col-12 *ngIf="terminal.FT!='CO' || (terminal.FT=='ER' && terminal.Sections.length>0)">
+                    <button ion-button type="submit" [disabled]="!form.valid" full>next</button>
+                </ion-col>
+                <ion-col col-12 *ngIf="terminal.FT=='CO' || (terminal.FT=='ER' && terminal.Sections.length==0)">
+                    <button ion-button type="submit" [disabled]="!form.valid" full>SUBMIT</button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </form>
+
+</ion-content>

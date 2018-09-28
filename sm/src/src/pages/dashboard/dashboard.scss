@@ -1,0 +1,118 @@
+page-dashboard {
+    ion-content,
+    .content-md {
+        background-color: #263238 !important;
+    }
+    .rows {
+        position: fixed;
+        bottom: 10px;
+        width: 96%;
+    }
+    .cols {
+        border: 2px solid white;
+        width: 100%;
+        height: 85px;
+        background-color: #00bfa5;
+        margin: 5px;
+        border-radius: 8px;
+    }
+    .psernpro {
+        text-align: center;
+        color: white;
+        margin-top: 0px;
+    }
+    .pactivity {
+        text-align: center;
+        color: white;
+        margin: 0px !important;
+        img {
+            margin-top: -4% !important;
+        }
+    }
+    .txt-margin {
+        margin-top: 3% !important;
+    }
+    .my-overlay {
+        position: fixed;
+        width: 80%;
+        height: 25%;
+        background: #fff;
+        z-index: 20;
+        top: 25%;
+        left: 10%;
+        box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.6);
+        padding-bottom: 10px;
+    }
+    ion-icon {
+        font-size: 33px;
+    }
+    .marquee {
+        display: inline-block;
+        animation: marquee 10s linear infinite;
+        color: #fff;
+        margin-left: 5px;
+    }
+    .marquee2 {
+        display: inline-block;
+        animation: marquee2 10s linear infinite;
+        animation-delay: 5s;
+        color: #fff;
+    }
+    .ptname {
+        color: #fff;
+    }
+    @keyframes marquee {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(-100%);
+        }
+    }
+    @keyframes marquee2 {
+        from {
+            transform: translateX(0%);
+        }
+        to {
+            transform: translateX(-200%);
+        }
+    }
+    .logo-img {
+        width: 100px;
+        height: 100px;
+    }
+    .word-color {
+        color: #1abc9c;
+    }
+    .title {
+        color: #ffffff;
+    }
+    .sliderimage {
+        width: 100%;
+        height: 105px;
+    }
+    .sliderdiv {
+        background-color: #333;
+        width: 100%;
+        height: 26px;
+        color: #ffffff;
+        padding-top: 3px;
+        white-space: nowrap !important;
+    }
+    ion-card-content {
+        padding: 3px !important;
+    }
+    ion-card {
+        border-radius: 7px !important;
+        width: 130% !important;
+        height: 138px !important;
+    }
+    .onKeyboardShow {
+        ion-slides {
+            position: absolute !important;
+        }
+    }
+    .my-overlay1 {
+        height: 43% !important;
+    }
+}

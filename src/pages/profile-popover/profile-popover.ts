@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the ProfilePopoverPage page.
@@ -31,7 +32,7 @@ export class ProfilePopoverPage {
 
   }
   logout() {
-
+    this.navCtrl.push(LoginPage);
   }
   filter() {
 

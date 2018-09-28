@@ -14,11 +14,19 @@ user = Users;
 constructor(public navCtrl: NavController) {
   //console.log('hello');
 }
+
 onGoToUsers(){
+  console.log("Hello hi");
   this.navCtrl.push(this.user)
-  .catch((error) => console.log('Access Denied , Argument was '+ error));
-  //this.navCtrl.setRoot(Users);
+ .catch((error) => console.log('Access Denied , Argument was '+ error));
+ console.log("Hello byee");
 }
+
+// onGoToUsers(){
+//   this.navCtrl.push(this.user)
+//   .catch((error) => console.log('Access Denied , Argument was '+ error));
+//   //this.navCtrl.setRoot(Users);
+// }
   /*
  
   

@@ -11,8 +11,8 @@ import { LoginPage } from '../pages/login/login';
 
 })
 export class MyApp {
-  //rootPage:any = SmPage;
-  rootPage:any = HomePage;
+  rootPage:any = SmPage;
+  //rootPage:any = HomePage;
   //rootPage:any = LoginPage;
 
 
